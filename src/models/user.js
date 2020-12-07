@@ -71,7 +71,7 @@ userSchema.methods.generateAuthToken = async function () {
   // We store instance methods under Schema.methods
   // because we're accessing instances, we're using regular function expression
   const user = this // for readability
-  const token = jwt.sign({ _id: user._id.toString() }, 'thisismydirtysecret')
+  const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET)
 
   // save new token to the database
   user.tokens = user.tokens.concat({ token })
